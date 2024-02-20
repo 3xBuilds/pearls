@@ -40,7 +40,6 @@ const tacoBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/Taco+Tribe+DO
 import { useEffect, useState } from 'react'
 import NavButton from './UI/Buttons/navButton'
 import { WalletConnectButton } from "./UI/Buttons/walletConnectButton"
-// const GuacBalance = dynamic(() => import("./UI/Labels/guacBalance"), { ssr: false });
 
 export default function Navbar() {
 
@@ -80,7 +79,7 @@ export default function Navbar() {
             </div>
             <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
                 <WalletConnectButton />
-                {isClient && isConnected ? <GuacBalance /> : <></>}
+                {/* {isClient && isConnected ? <GuacBalance /> : <></>} */}
             </div>
         </div>
     </>
