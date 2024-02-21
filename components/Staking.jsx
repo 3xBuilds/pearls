@@ -120,8 +120,7 @@ const Staking = () => {
 
   async function fetchNFTs() {
     setDisplayNFT([])
-    const dispArr = [];
-
+    // const dispArr = [];
 
     const contract = await stakingSetup();
     const res = await contract?.fetchMyNfts();
