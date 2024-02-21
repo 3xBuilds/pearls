@@ -213,6 +213,8 @@ const Staking = () => {
             </h1>
         </div>}
 
+        
+
     </div>
   )
 }
