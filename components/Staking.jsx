@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { contractAdds } from '@/utils/contractAdds';
 import pearlabi from '@/utils/newAbis/stakingpearlabi';
 import { useGlobalContext } from '@/context/MainContext';
+import { ethers } from "ethers";
 
 const Staking = () => {
   const { isConnected, address } = useAccount()
@@ -126,7 +127,7 @@ const Staking = () => {
     const res = await contract?.fetchMyNfts();
     await res.wait();
 
-    console.log(res);
+    console.log("nfts: ",res);
 
     res.map((item)=>{
       const tokenId = item[0];
@@ -212,6 +213,37 @@ const Staking = () => {
                 <span className="text-[3rem]">Please Connect Your Wallet!!!</span>
             </h1>
         </div>}
+
+        {
+          isConnected && isClient && <div className="w-full h-full">
+            <h1 className="text-3xl text-black text-center">
+                Staking Page
+            </h1>
+            <div className="flex justify-center items-center">
+              <button onClick={fetchNFTs} className="bg-black text-white p-2 rounded-md m-2">Fetch NFTs</button>
+              <button onClick={claimAll} className="bg-black text-white p-2 rounded-md m-2">Claim All</button>
+              <button onClick={softStakeAll} className="bg-black text-white p-2 rounded-md m-2">Soft Stake All</button>
+            </div>
+            <div className="flex justify-center items-center">
+              <div className="flex flex-wrap justify-center items-center">
+                {displayNFT.map((item, index)=>{
+                  return (
+                    <div key={index} className="m-2">
+                      <div className="flex flex-col justify-center items-center">
+                        <Image src={item.img} alt={item.name} width={100} height={100} />
+                        <h1 className="text-black">{item.name}</h1>
+                        <h1 className="text-black">Reward: {item.reward}</h1>
+                        <h1 className="text-black">Stake Type: {item.stakeType}</h1>
+                        <button onClick={()=>{claim(item.tokenId)}} className="bg-black text-white p-2 rounded-md m-2">Claim</button>
+                        <button onClick={()=>{softStake(item.tokenId)}} className="bg-black text-white p-2 rounded-md m-2">Soft Stake</button>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        }
 
         
 
