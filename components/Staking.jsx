@@ -124,14 +124,14 @@ const Staking = () => {
 
     const contract = await stakingSetup();
     const res = await contract?.fetchMyNfts();
-    await res.wait();
+    // res.wait();
 
     console.log("nfts: ",res);
 
     res.map((item)=>{
-      const tokenId = item[0];
-      const reward = item[1];
-      const stakeType = item[2];
+      const tokenId = Number(item[0]);
+      const reward = Number(item[1]);
+      const stakeType = Number(item[2]);
 
       const name = `Pearls #${tokenId}`;
       const img = `https://ipfs.io/ipfs/bafybeign6syuudwqztvjulqeukfoqhhkaphkohpw5pogvvejht3mnkkxdq/${tokenId}.png`;
