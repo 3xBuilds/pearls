@@ -8,9 +8,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-radial': 'radial-gradient(299.12% 162.27% at 95.24% 76.53%, rgba(0, 0, 0, 1) 14.07%, #320084 100%)',
+        'gradient-bright': 'linear-gradient(44deg, #4B00AA 0%, #A001EB 100%);'
       },
     },
   },

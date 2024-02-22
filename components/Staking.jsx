@@ -7,6 +7,7 @@ import { contractAdds } from '@/utils/contractAdds';
 import pearlabi from '@/utils/newAbis/stakingpearlabi';
 import { useGlobalContext } from '@/context/MainContext';
 import { ethers } from "ethers";
+import stakingBanner from '../assets/images/stakingBanner.png'
 
 const Staking = () => {
   const { isConnected, address } = useAccount()
@@ -16,6 +17,9 @@ const Staking = () => {
 
   useEffect(() => {
     setIsClient(true)
+    if(isConnected){
+      fetchNFTs();
+    }
   }, [isConnected])
 
   async function stakingSetup() {
@@ -123,21 +127,24 @@ const Staking = () => {
     // const dispArr = [];
 
     const contract = await stakingSetup();
-    const res = await contract?.fetchMyNfts();
-    // res.wait();
 
-    console.log("nfts: ",res);
+    try{
+      const res = await contract?.fetchMyNfts();
+      console.log("nfts: ",res);
 
-    res.map((item)=>{
-      const tokenId = Number(item[0]);
-      const reward = Number(item[1]);
-      const stakeType = Number(item[2]);
+      res.map((item)=>{
+        const tokenId = Number(item[0]);
+        const reward = Number(item[1]);
+        const stakeType = Number(item[2]);
 
-      const name = `Pearls #${tokenId}`;
-      const img = `https://ipfs.io/ipfs/bafybeign6syuudwqztvjulqeukfoqhhkaphkohpw5pogvvejht3mnkkxdq/${tokenId}.png`;
-      
-      setDisplayNFT((prev)=>[...prev, {tokenId, reward, stakeType, name, img}])
-    })
+        const name = `Pearls #${tokenId}`;
+        const img = `https://ipfs.io/ipfs/bafybeign6syuudwqztvjulqeukfoqhhkaphkohpw5pogvvejht3mnkkxdq/${tokenId}.png`;
+        
+        setDisplayNFT((prev)=>[...prev, {tokenId, reward, stakeType, name, img}])
+      })
+    }catch(err){
+      fetchNFTs();
+    }
   }
 
   async function softStake(tokenId) {
@@ -202,7 +209,7 @@ const Staking = () => {
   }
   
   return (
-    <div className='w-screen h-screen pt-24 text-center'>
+    <div className='w-screen h-screen overflow-hidden noscr bg-gradient-radial pt-24 text-center'>
 
         {!isConnected && isClient && <div className=" min-h-screen">
             <h1 className="text-3xl text-black text-center">
@@ -215,26 +222,31 @@ const Staking = () => {
 
         {
           isConnected && isClient && <div className="w-full h-full">
-            <h1 className="text-3xl text-black text-center">
+            {/* <h1 className="text-3xl text-black text-center">
                 Staking Page
-            </h1>
-            <div className="flex justify-center items-center">
-              <button onClick={fetchNFTs} className="bg-black text-white p-2 rounded-md m-2">Fetch NFTs</button>
-              <button onClick={claimAll} className="bg-black text-white p-2 rounded-md m-2">Claim All</button>
-              <button onClick={softStakeAll} className="bg-black text-white p-2 rounded-md m-2">Soft Stake All</button>
+            </h1> */}
+            <div className=' border-x-4 border-purple-600 px-2 rounded-lg max-md:w-[90%] md:w-[50%] mx-auto'><Image className=' rounded-lg ' src={stakingBanner} alt={"staking banner"}  width={1000} height={1000} /></div>
+            <div className="flex justify-center items-center mt-10 bg-white/10 rounded-xl w-fit mx-auto">
+              {/* <button onClick={fetchNFTs} className="bg-black text-white p-2 rounded-md m-2">Fetch NFTs</button> */}
+              <button onClick={claimAll} className="bg-gradient-bright w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Claim All</button>
+              <button onClick={softStakeAll} className="bg-gradient-bright w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Soft Stake All</button>
             </div>
             <div className="flex justify-center items-center">
               <div className="flex flex-wrap justify-center items-center">
                 {displayNFT.map((item, index)=>{
                   return (
-                    <div key={index} className="m-2">
+                    <div key={index} className="m-2 bg-gradient-to-br from-slate-800 via-purple-600 to-slate-800 border-2 p-2 border-black w-64 rounded-xl">
                       <div className="flex flex-col justify-center items-center">
-                        <Image src={item.img} alt={item.name} width={100} height={100} />
-                        <h1 className="text-black">{item.name}</h1>
-                        <h1 className="text-black">Reward: {item.reward}</h1>
-                        <h1 className="text-black">Stake Type: {item.stakeType}</h1>
-                        <button onClick={()=>{claim(item.tokenId)}} className="bg-black text-white p-2 rounded-md m-2">Claim</button>
-                        <button onClick={()=>{softStake(item.tokenId)}} className="bg-black text-white p-2 rounded-md m-2">Soft Stake</button>
+                        <Image src={item.img} alt={item.name} className=' rounded-lg bg-white w-full' width={100} height={100} />
+                        <div className='grid grid-cols-2 gap-3 w-full mt-2 bg-white/50 border-x-4 border-white px-2 rounded-full shadow-inner'>
+                          <h1 className="text-black">{item.name}</h1>
+                          <h1 className="text-black">Reward: {item.reward}</h1>
+                          {/* <h1 className="text-black">Stake Type: {item.stakeType}</h1> */}
+                        </div>
+                        <div className='grid grid-cols-2 gap-2 w-full mt-2'>
+                          <button onClick={()=>{claim(item.tokenId)}} className=" bg-black/50 hover:bg-black/80 w-full text-white p-2 rounded-md">Claim</button>
+                          <button onClick={()=>{softStake(item.tokenId)}} className="bg-black/50 hover:bg-black/80 w-full text-white p-2 rounded-md">Soft Stake</button>
+                        </div>
                       </div>
                     </div>
                   )
