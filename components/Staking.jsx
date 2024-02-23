@@ -135,7 +135,7 @@ const Staking = () => {
 
       res.map((item)=>{
         const tokenId = Number(item[0]);
-        const reward = Number(item[1]);
+        const reward = String(ethers.utils.formatEther(item[1]));
         const stakeType = Number(item[2]);
 
         const name = `Pearls #${tokenId}`;
