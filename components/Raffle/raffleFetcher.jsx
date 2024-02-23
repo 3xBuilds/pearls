@@ -124,7 +124,7 @@ export default function RaffleFetcher({number}){
                     const json = await meta.json();
                     const name = json["name"];
                     const image = json["image"];
-                    const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
     
                     console.log(newimage);
         
@@ -137,13 +137,13 @@ export default function RaffleFetcher({number}){
                 }
 
                 else{
-                    const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                    const metadata = `https://cf-ipfs.com/ipfs/${tokenURI.substr(7)}`;
                     
                     const meta = await fetch(metadata);
                     const json = await meta.json();
                     const name = json["name"];
                     const image = json["image"];
-                    const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
     
                     console.log(newimage);
         

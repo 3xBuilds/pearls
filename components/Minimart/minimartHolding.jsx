@@ -179,7 +179,7 @@ export default function MinimartHolding({ contractAddress, listed }) {
 
             const name = metadata["name"];
             const img = metadata["image"];
-            const image = "https://ipfs.io/ipfs/" + img.substr(7);
+            const image = "https://cf-ipfs.com/ipfs/" + img.substr(7);
 
 
             arr.push({ name, image, tokenId });

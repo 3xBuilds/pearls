@@ -8,6 +8,7 @@ import pearlabi from '@/utils/newAbis/stakingpearlabi';
 import { useGlobalContext } from '@/context/MainContext';
 import { ethers } from "ethers";
 import stakingBanner from '../assets/images/stakingBanner.png'
+import pearllogo from '../assets/images/pearllogo.png'
 
 const Staking = () => {
   const { isConnected, address } = useAccount()
@@ -138,7 +139,7 @@ const Staking = () => {
         const stakeType = Number(item[2]);
 
         const name = `Pearls #${tokenId}`;
-        const img = `https://ipfs.io/ipfs/bafybeign6syuudwqztvjulqeukfoqhhkaphkohpw5pogvvejht3mnkkxdq/${tokenId}.png`;
+        const img = `https://cf-ipfs.com/ipfs/bafybeign6syuudwqztvjulqeukfoqhhkaphkohpw5pogvvejht3mnkkxdq/${tokenId}.png`;
         
         setDisplayNFT((prev)=>[...prev, {tokenId, reward, stakeType, name, img}])
       })
@@ -209,19 +210,20 @@ const Staking = () => {
   }
   
   return (
-    <div className='w-screen h-screen overflow-hidden noscr bg-gradient-radial pt-24 text-center'>
+    <div className='w-screen h-screen overflow-hidden noscr bg-gradient-radial text-center'>
 
-        {!isConnected && isClient && <div className=" min-h-screen">
-            <h1 className="text-3xl text-black text-center">
+        {!isConnected && isClient && <div className=" min-h-screen w-full flex flex-col items-center justify-center">
+            <Image src={pearllogo} alt={"pearl logo"} className=' rounded-lg w-64' width={1000} height={1000} />
+            <h1 className="text-3xl text-white text-center">
                 Seems like you are not connected.
                 <br className=" max-lg:hidden"/>
                 <br/>
-                <span className="text-[3rem]">Please Connect Your Wallet!!!</span>
+                <span className="text-[3rem] mt-5">Please Connect Your Wallet!!!</span>
             </h1>
         </div>}
 
         {
-          isConnected && isClient && <div className="w-full h-full">
+          isConnected && isClient && <div className="w-full h-full pt-24">
             {/* <h1 className="text-3xl text-black text-center">
                 Staking Page
             </h1> */}

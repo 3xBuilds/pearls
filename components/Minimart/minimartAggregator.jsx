@@ -228,7 +228,7 @@ export default function MinimartAggregator() {
           console.log(tokenId);
 
           const uri = await contract.tokenURI(tokenId);
-          const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+          const metadata = "https://cf-ipfs.com/ipfs/" + uri.substr(7);
 
           try{
 
@@ -241,7 +241,7 @@ export default function MinimartAggregator() {
             const json = await meta.json();
             console.log(json);
             const name = json["name"];
-            const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+            const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
             const price = ethers.utils.formatEther(String(data[i][3]));
             const owner = String(data[i][2]);
 
