@@ -144,7 +144,8 @@ const Staking = () => {
         setDisplayNFT((prev)=>[...prev, {tokenId, reward, stakeType, name, img}])
       })
     }catch(err){
-      fetchNFTs();
+      console.log(err);
+      setTimeout(fetchNFTs, 1000);
     }
   }
 
