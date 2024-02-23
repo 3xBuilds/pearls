@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 //Wagmi
 import { useAccount } from 'wagmi'
@@ -57,7 +58,8 @@ export default function Navbar() {
 
     return (<>
         {openNav && <div className='fixed top-0 left-0 z-50 w-screen h-screen bg-yellow-400 flex flex-col gap-1 items-center justify-center'>
-            <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/" ? true : false} link={"/"} />
+            <Link href="/"><button className="bg-white border-2 border-black text-sm text-black rounded-full w-20 h-6 hover:bg-white/50 text-center">Mint</button></Link>
+            <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
             <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
             <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
         </div>}
@@ -73,7 +75,8 @@ export default function Navbar() {
             </div>
 
             <div className="w-fit max-[890px]:hidden flex flex-row items-center justify-center gap-5 max-[1060px]:gap-2 max-lg:gap-1">
-                <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/" ? true : false} link={"/"} />
+                <Link href="/"><button className="bg-white border-2 border-black text-sm text-black rounded-full w-20 h-6 hover:bg-white/50 text-center">Mint</button></Link>
+                <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
             </div>

@@ -1,12 +1,11 @@
-import Staking from "@/components/Staking";
 import Navbar from "../components/Navbar";
-import Image from "next/image";
+import Minting from "../components/Minting";
 
 export default function Home() {
   return (
     <main className="">
       <Navbar/>
-      <Staking/>
+      <Minting/>
     </main>
   );
 }
