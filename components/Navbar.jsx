@@ -61,7 +61,7 @@ export default function Navbar() {
             <Link href="/"><button className="bg-white border-2 border-black text-sm text-black rounded-full w-20 h-6 hover:bg-white/50 text-center">Mint</button></Link>
             <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
             <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
-            <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
+            {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
         </div>}
 
         <div suppressHydrationWarning={true} className="w-full flex items-center justify-between px-10 max-lg:px-2 fixed z-50 top-0 left-0 py-4">
@@ -78,7 +78,7 @@ export default function Navbar() {
                 <Link href="/"><button className="bg-white border-2 border-black text-sm text-black rounded-full w-20 h-6 hover:bg-white/50 text-center">Mint</button></Link>
                 <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
-                <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
+                {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
             </div>
             <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
                 <WalletConnectButton />
