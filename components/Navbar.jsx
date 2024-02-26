@@ -21,14 +21,14 @@ const doodledBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/doodledDow
 const pixelDoodBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelDoodUp.png'
 const pixelDoodBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelDoodDown.png'
 
-const stakeBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/stakeUp.png'
-const stakeBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/stakeDown.png'
+import mintBtnUp from '../assets/images/mint_up.png'
+import mintBtnDown from '../assets/images/mint_down.png'
 
-const raffleBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/raffleUp.png'
-const raffleBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/raffleDown.png'
+import stakeBtnUp from '../assets/images/stake_up.png'
+import stakeBtnDown from '../assets/images/stake_down.png'
 
-const minimartBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/marketUp.png'
-const minimartBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/marketDown.png'
+import raffleBtnUp from '../assets/images/raffle_up.png'
+import raffleBtnDown from '../assets/images/raffle_down.png'
 
 const backBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallUp.png'
 const backBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallDown.png'
@@ -58,7 +58,7 @@ export default function Navbar() {
 
     return (<>
         {openNav && <div className='fixed top-0 left-0 z-50 w-screen h-screen bg-yellow-400 flex flex-col gap-1 items-center justify-center'>
-            <Link href="/"><button className="bg-white border-2 border-black text-sm text-black rounded-full w-20 h-6 hover:bg-white/50 text-center">Mint</button></Link>
+            <NavButton upImage={mintBtnUp} downImage={mintBtnDown} selected={params == "/" ? true : false} link={"/"} />
             <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
             <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
             {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
@@ -75,7 +75,7 @@ export default function Navbar() {
             </div>
 
             <div className="w-fit max-[890px]:hidden flex flex-row items-center justify-center gap-5 max-[1060px]:gap-2 max-lg:gap-1">
-                <Link href="/"><button className="bg-white border-2 border-black text-sm text-black rounded-full w-20 h-6 hover:bg-white/50 text-center">Mint</button></Link>
+                <NavButton upImage={mintBtnUp} downImage={mintBtnDown} selected={params == "/" ? true : false} link={"/"} />
                 <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
                 {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}

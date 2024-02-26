@@ -8,11 +8,10 @@ import PastWinners from "./Raffle/pastwinners"
 
 const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png"
 
-
-const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBg.png";
-const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLive.png";
-const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBgMobile.png";
-// const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLiveMobile.png";
+import bg from "../assets/images/taco-truck-night.png"
+import bgConnected from "../assets/images/taco-truck-day-inside.png";
+import bgMobile from "../assets/images/taco-truck-night-mobile.png";
+import bgMobileConnected from "../assets/images/taco-truck-day-inside-mobile.png";
 
 const banner = "https://d19rxn9gjbwl25.cloudfront.net/ui/taco_raffle_banner.png";
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/ui/guac_coin.png";
@@ -32,12 +31,12 @@ export default function Raffle() {
   return (
     <>
       {/* Background */}
-      <div className="fixed top-0 left-0 w-screen h-full z-0 bg-[#d1ffc3] md:block overflow-x-hidden">
+      <div className="absolute top-0 left-0 w-screen h-screen z-0 md:block max-h-screen overflow-hidden">
         <div className="relative h-full">
-          {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden h-full" />}
-          {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}
+          {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden w-full h-full" />}
+          {/* {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden w-full h-full scale-110" />} */}
           {!isConnected && isClient && <Image width={1920} height={1080} src={bgMobile} className="object-cover sm:hidden h-full" />}
-          {/* {isConnected && isClient && <Image width={1920} height={1080} src={bgMobileConnected} className="object-cover sm:hidden " />} */}
+          {/* {isConnected && isClient && <Image width={1920} height={1080} src={bgMobileConnected} className="object-cover sm:hidden h-full" />} */}
         </div>
       </div>
 
