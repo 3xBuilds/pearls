@@ -218,12 +218,12 @@ const Staking = () => {
     <div className='w-screen h-screen overflow-hidden noscr bg-pearl-gray text-center'>
 
       {/* Background */}
-      <div className="absolute top-0 left-0 w-screen h-screen z-0 md:block max-h-screen overflow-hidden">
+      {!isConnected && isClient && <div className="absolute top-0 left-0 w-screen h-screen z-10 md:block max-h-screen overflow-hidden">
         <div className="relative h-full">
-          {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden w-full h-full" />}
-          {!isConnected && isClient && <Image width={1920} height={1080} src={bgMobile} className="object-cover sm:hidden h-full" />}
+          <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden w-full h-full" />
+          <Image width={1920} height={1080} src={bgMobile} className="object-cover sm:hidden h-full" />
         </div>
-      </div>
+      </div>}
 
         {
           isConnected && isClient && <div className="w-full h-full pt-24">
