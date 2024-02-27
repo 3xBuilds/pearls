@@ -118,12 +118,12 @@ export default function PearlMint() {
                 <button onClick={()=>{setAmountBoxShow(true)}} className="bg-red-400">Click me pls</button>
             </div> */}
 
-            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" hidden md:block absolute cursor-pointer w-full h-full"></button>
+            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" absolute cursor-pointer w-full h-full"></button>
 
-            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className='md:hidden group cursor-pointer absolute z-10 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'>
+            {/* <button onClick={() => { isConnected && setAmountBoxShow(true) }} className='md:hidden group cursor-pointer absolute z-10 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'>
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
-            </button>
+            </button> */}
 
             {amountBoxShow &&
                 <div className="bg-yellow-400 z-10 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
