@@ -7,7 +7,7 @@ import Image from "next/image"
 import {useAccount} from "wagmi"
 
 import {ethers} from "ethers"
-import { MutatingDots } from "react-loader-spinner"
+import { InfinitySpin } from "react-loader-spinner"
 
 export default function RaffleFetcher({number}){
 
@@ -96,10 +96,17 @@ export default function RaffleFetcher({number}){
     
     async function fetchRaffle(){
         try{
+            setLoading(true)
             console.log("WALLET", address);
             const contract = await setRaffle();
             const add = await contract?.raffleContract(number);
             const tokenId = Number(await contract?.raffleTokenId(number));
+
+            if(add.toLowerCase() == "0x0000000000000000000000000000000000000000") {
+                console.log("NO CONTRACT");
+                setLoading(false);
+                return;
+            }
 
             const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
             const limit = Number(await contract?.ticketLimit(number));
@@ -153,13 +160,15 @@ export default function RaffleFetcher({number}){
                     setName(name);
                     setImage(newimage);
                 }
-                    
+             
+                setLoading(false)
 
             }
         }
 
         catch(err){
             console.log(err);
+            setTimeout( fetchRaffle(), 1000);
         }
     }
 
@@ -211,27 +220,49 @@ export default function RaffleFetcher({number}){
     useEffect(()=>{
         fetchRaffle();
     },[])
+    
     return(
         <div className="flex">
-            {itemExists ? <div className="bg-gradient-to-b from-purple-500 shadow-xl shadow-black/40 to-lime-400 py-2 px-2 rounded-2xl border-2 border-black w-full p-2 mx-auto">
-                <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
-                <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name}</h2>
-                <div className="grid grid-cols-2 gap-2">
-                    <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Participants: <br /> {entrants}</h2>
-                    <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Tickets Sold: <br /> {ticketsSold}/{limit}</h2>
-                    <h2 className="bg-purple-400 col-span-2 text-white border-2 border-black rounded-xl py-2 w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
+            {itemExists ? <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black w-80 rounded-xl">
+                <div className=' rounded-lg bg-white w-full overflow-hidden relative group hover:scale-110 hover:border-2 hover:border-white transition-all duration-300 ease-in-out hover:shadow-black hover:shadow-2xl hover:z-50'>
+                    <h1 className="text-black absolute bg-white group-hover:hidden rounded-br-xl px-3 py-0.5 top-0 left-0">{name}</h1>
+                    <Image src={image} alt={name} className=' bg-white w-full h-full object-cover ' width={100} height={100} />
                 </div>
-                <h2 className="text-black bg-white w-fit rounded-t-none rounded-xl py-2 px-4 mx-auto text-[1.2rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $PEARL</h2>
+                <div className="grid grid-cols-2 gap-2 mt-2">
+                    <div className="bg-red-900 border-2 border-black text-black rounded-xl p-0.5 text-xs w-full flex flex-col items-center justify-center">
+                        <h3 className="text-white mb-1">Participants:</h3>
+                        <div className="text-base bg-white rounded-lg w-full">{entrants}</div>
+                    </div>
+                    <div className="bg-red-900 border-2 border-black text-black rounded-xl p-0.5 text-xs w-full flex flex-col items-center justify-center">
+                        <h3 className="text-white mb-1">Tickets Sold:</h3>
+                        <div className="text-base bg-white rounded-lg w-full">{ticketsSold}/{limit}</div>
+                    </div>
+                    <h2 className="bg-black/20 col-span-2 text-sm text-white border-2 border-x-4 border-black rounded-xl py-1 leading-none w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
+                </div>
+                <h2 className="text-black bg-gradient-to-br from-red-200 via-white/60 to-red-200 w-fit rounded-t-none rounded-xl py-1 px-4 mx-auto text-[1rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $PEARL</h2>
 
                 <button onClick={()=>{
                     setTicketModal(true);
-                }} className="text-3xl bg-red-500 hover:bg-red-600 text-white px-5 py-3 mt-4 rounded-xl border-2 border-black ">Buy Tickets</button>
+                }} className="bg-black/50 hover:bg-black/80 cursor-pointer w-full text-white p-4 rounded-lg mt-2">Buy Tickets</button>
                 
                 
             </div> : 
-            <div className="bg-gradient-to-b from-purple-500 to-lime-400 shadow-xl shadow-black/40 h-fit rounded-2xl border-2 border-black w-full p-5 mx-auto flex items-center justify-center">
+            loading ? <div className="bg-gradient-to-br from-red-800  opacity-10 flex items-center justify-center animate-pulse via-pearl-red to-red-900 border-2 p-2 border-black w-80 rounded-xl">
                 {/* <Image width={1920} height={1080} src={noraffle} className="w-full border-2 border-black bg-white rounded-lg"/> */}
-                    <h3 className="text-xl text-black">No raffle Image</h3>
+                    <div className="w-fit h-fit relative right-6">
+                    <InfinitySpin
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="white"
+                        radius="12.5"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        />
+                    </div>
+                </div> : 
+                <div className="bg-gradient-to-br from-red-800  opacity-20 flex items-center justify-center via-pearl-red to-red-900 border-2 p-2 border-black w-80 rounded-xl">
+                    <h3 className="text-white text-center">No Item Here</h3>
                 </div>}
 
                 {ticketModal && <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
@@ -253,14 +284,13 @@ export default function RaffleFetcher({number}){
                         Buy
                         </button>:
                          
-                        <MutatingDots
+                        <InfinitySpin
                         visible={true}
                         height="100"
                         width="100"
                         color="#a855f7"
                         secondaryColor="#fff"
                         radius="12.5"
-                        ariaLabel="mutating-dots-loading"
                         wrapperStyle={{}}
                         wrapperClass=""
                         />

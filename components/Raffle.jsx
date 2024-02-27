@@ -13,8 +13,8 @@ import bgConnected from "../assets/images/taco-truck-day-inside.png";
 import bgMobile from "../assets/images/taco-truck-night-mobile.png";
 import bgMobileConnected from "../assets/images/taco-truck-day-inside-mobile.png";
 
-const banner = "https://d19rxn9gjbwl25.cloudfront.net/ui/taco_raffle_banner.png";
-const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/ui/guac_coin.png";
+import banner from "../assets/images/raffle_banner.png";
+import guacLogo from "../assets/images/pearl_token.png";
 
 import RaffleCard from "./Raffle/raffleCard"
 
@@ -40,12 +40,12 @@ export default function Raffle() {
         </div>
       </div>
 
-      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-10 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
-        <div className="relative w-[50%] max-md:w-[90%] pt-16 mt-10 ">
+      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-10 w-screen bg-[#FFD6DD] max-[1240px]:h-fit relative">
+        <div className="relative w-[60%] max-md:w-[90%] pt-16 mt-10 ">
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>
         <div className="text-black text-center">
-          <h1 className="text-4xl max-sm:px-10 max-sm:text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 "><Image className="w-10" width={100} height={100} src={guacLogo}></Image></span> $Guac!</h1>
+          <h1 className="text-4xl max-sm:px-10 max-sm:text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 "><Image className="w-10 -mb-2" width={100} height={100} src={guacLogo}></Image></span> $Pearl!</h1>
 
           <div className="grid gap-5 lg:grid-cols-4 max-lg:grid-cols-2 max-lg:w-[80%] max-md:grid-cols-1 w-[90%] mx-auto mt-10">
             <RaffleFetcher number = {1}/>

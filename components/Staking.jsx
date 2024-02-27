@@ -160,8 +160,8 @@ const Staking = () => {
       const res = await contract?.softStake(tokenId);
       await res.wait();
       Swal.fire({
-        title: 'Soft Staked!',
-        text: 'NFT was Soft Staked!',
+        title: 'Staked!',
+        text: 'NFT was Staked!',
         icon: 'success',
         imageAlt: "Pearl!",
         confirmButtonText: 'LFG!',
@@ -193,8 +193,8 @@ const Staking = () => {
       const res = await contract?.softStakeAll(tokenIds);
       await res.wait();
       Swal.fire({
-        title: 'Soft Staked!',
-        text: 'NFTs were Soft Staked',
+        title: 'Staked!',
+        text: 'NFTs were Staked',
         icon: 'success',
         imageAlt: "Taco!",
         confirmButtonText: 'LFG!',
@@ -234,7 +234,7 @@ const Staking = () => {
             <div className="flex justify-center items-center mt-10 bg-white/10 rounded-xl w-fit mx-auto">
               {/* <button onClick={fetchNFTs} className="bg-black text-white p-2 rounded-md m-2">Fetch NFTs</button> */}
               <button onClick={claimAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Claim All</button>
-              <button onClick={softStakeAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Soft Stake All</button>
+              <button onClick={softStakeAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Stake All</button>
             </div>
             <div className="flex justify-center items-center">
               <div className="flex flex-wrap justify-center items-center">
@@ -242,18 +242,22 @@ const Staking = () => {
                   return (
                     <div key={index} className="m-2 bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black w-64 rounded-xl">
                       <div className="flex flex-col justify-center items-center">
-                        <div className=' rounded-lg bg-white w-full overflow-hidden relative group hover:scale-125 hover:border-2 hover:border-white transition-all duration-300 ease-in-out hover:shadow-black hover:shadow-2xl hover:z-50'>
+                        <div className=' rounded-lg bg-white w-full overflow-hidden relative group hover:scale-110 hover:border-2 hover:border-white transition-all duration-300 ease-in-out hover:shadow-black hover:shadow-2xl hover:z-50'>
                           <h1 className="text-black absolute bg-white group-hover:hidden rounded-br-xl px-3 py-0.5 top-0 left-0">{item.name}</h1>
                           <Image src={item.img} alt={item.name} className=' bg-white w-full h-full object-cover ' width={100} height={100} />
                         </div>
                         <div className='grid grid-cols-1 gap-3 w-full mt-2 bg-white/50 border-x-4 border-white px-2 rounded-full shadow-inner'>
                           
-                          <h1 className="text-black">Reward: {item.reward}</h1>
+                          {
+                            Number(item.reward)>0 ?
+                            <h1 className={`text-black  `}>Reward: {Number(item.reward).toFixed(1)}</h1>:
+                            <h1 className={`text-black  `}>Stake to get rewards</h1>
+                          }
                           {/* <h1 className="text-black">Stake Type: {item.stakeType}</h1> */}
                         </div>
                         <div className='grid grid-cols-1 gap-2 w-full mt-2'>
-                          {item.stakeType == "1" && <button onClick={()=>{claim(item.tokenId)}} className=" bg-black/50 hover:bg-black/80 cursor-pointer w-full text-white p-2 rounded-md">Claim</button>}
-                          {item.stakeType == "0" && <button onClick={()=>{softStake(item.tokenId)}} className="bg-black/50 hover:bg-black/80 cursor-pointer w-full text-white p-2 rounded-md">Soft Stake</button>}
+                          {item.stakeType == "1" && <button onClick={()=>{claim(item.tokenId)}} className=" bg-white border-black border-2 hover:bg-pearl-red hover:border-white hover:text-white cursor-pointer w-full text-black p-2 rounded-md">Claim</button>}
+                          {item.stakeType == "0" && <button onClick={()=>{softStake(item.tokenId)}} className="bg-black/50 hover:bg-black/80 cursor-pointer w-full text-white p-2 rounded-md">Stake</button>}
                         </div>
                       </div>
                     </div>
