@@ -240,6 +240,9 @@ const Staking = () => {
               <h2 className="text-sm text-white pb-1">You Own:</h2>
               <h3 className="bg-white rounded text-lg">{balance} NFTs</h3>
             </div>
+
+            <h1 className="my-5">Stake your PEARL NFTs to get 10$PEARLS daily!</h1>
+
             <div className="flex justify-center items-center  w-fit mx-auto bg-red-500/50 rounded-xl border-2 border-black">
               <button onClick={()=>{setUnstakedList(true)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ unstakedList && " bg-pearl-red border-2 border-black " } `}>Not Staked</button>
               <button onClick={()=>{setUnstakedList(false)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ !unstakedList && " bg-pearl-red border-2 border-black " } `}>Staked</button>
