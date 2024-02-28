@@ -11,15 +11,14 @@ import stakingBanner from '../assets/images/stakingBanner.png'
 
 import bg from "../assets/images/taco-truck-night.png"
 import bgMobile from "../assets/images/taco-truck-night-mobile.png";
-import bgConnected from "../assets/images/taco-truck-day-inside.png";
-import bgMobileConnected from "../assets/images/taco-truck-day-inside-mobile.png";
+
 
 const Staking = () => {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
   const { loader, setLoader } = useGlobalContext();
   const [balance, setBalance] = useState(0);
-  const [unstakedList, setUnstakedList] = useState(true);
+  const [unstakedList, setUnstakedList] = useState(false);
   const [displayNFT, setDisplayNFT] = useState([]);
 
   useEffect(() => {
