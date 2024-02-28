@@ -236,7 +236,7 @@ const Staking = () => {
             </h1> */}
             <div className=' px-2 rounded-lg max-md:w-[90%] md:w-[60%] mx-auto'><Image className=' rounded-lg ' src={stakingBanner} alt={"staking banner"}  width={1000} height={1000} /></div>
             
-            <div className=" rounded-t-lg border-2 border-black mt-10 w-32 mx-auto py-1 px-2 border-b-0 flex flex-col bg-pearl-red">
+            <div className=" rounded-lg border-2 border-black mt-10 w-32 mx-auto py-1 px-2 flex flex-col bg-pearl-red">
               <h2 className="text-sm text-white pb-1">You Own:</h2>
               <h3 className="bg-white rounded text-lg">{balance} NFTs</h3>
             </div>
@@ -266,7 +266,7 @@ const Staking = () => {
                         <div className='grid grid-cols-1 gap-3 w-full mt-2 bg-white/50 border-x-4 border-white px-2 rounded-full shadow-inner'>
                           
                           {
-                            Number(item.reward)>0 ?
+                            Number(item.stakeType)>0 ?
                             <h1 className={`text-black`}>Reward: {Number(item.reward).toFixed(1)}</h1>:
                             <h1 className={`text-black`}>Stake to get rewards</h1>
                           }
