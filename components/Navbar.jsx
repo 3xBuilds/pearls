@@ -3,23 +3,12 @@
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-
+import { contractAdds } from '@/utils/contractAdds'
+import pearlTokenabi from '@/utils/newAbis/pearlTokenabi'
+import {ethers} from "ethers";
 //Wagmi
 import { useAccount } from 'wagmi'
 
-//Images
-const homeBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/homeUpLg.png'
-const homeBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/homeDownLg.png'
-
-const pixelTacoBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelTacoUp.png'
-const pixelTacoBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelTacoDown.png'
-
-const doodledBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/doodledUp.png'
-const doodledBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/doodledDown.png'
-
-//Buttons
-const pixelDoodBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelDoodUp.png'
-const pixelDoodBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelDoodDown.png'
 
 import mintBtnUp from '../assets/images/mint_up.png'
 import mintBtnDown from '../assets/images/mint_down.png'
@@ -33,8 +22,6 @@ import raffleBtnDown from '../assets/images/raffle_down.png'
 const backBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallUp.png'
 const backBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallDown.png'
 
-const tacoBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/Taco+Tribe+Up.png'
-const tacoBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/Taco+Tribe+DOWN.png'
 
 
 //Button Layout
@@ -48,12 +35,62 @@ export default function Navbar() {
 
     const [openNav, setOpenNav] = useState(false);
 
-    const { address, isConnected, isDisconnected } = useAccount();
+    const[balance, setBalance] = useState(0);
+    const {address} = useAccount();
 
-    const [isClient, setIsClient] = useState(false)
+    // const [isClient, setIsClient] = useState(false)
+
+
+
+    async function tokenBalanceSetup() {
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+    
+        try {
+          const contract = new ethers.Contract(contractAdds.pearlToken, pearlTokenabi, signer);
+        //   setLoader(false);
+    
+          return contract;
+        }
+        catch (err) {
+    
+    
+          console.log("Error", err)
+        //   Swal.fire({
+        //     title: 'Error!',
+        //     text: 'Couldn\'t get fetching contract',
+        //     // imageUrl: error,
+        //     // imageWidth: 200,
+        //     // imageHeight: 200,
+        //     // imageAlt: "Taco OOPS!",
+        //     confirmButtonText: 'Bruh 😭',
+        //     confirmButtonColor: "#facc14",
+        //     customClass: {
+        //       container: "border-8 border-black",
+        //       popup: "bg-white rounded-2xl border-8 border-black",
+        //       image: "-mb-5",
+        //       confirmButton: "w-40 text-black"
+        //     }
+        //   })
+        }
+      }
+
+      async function getBalance(){
+        try{
+
+            const contract = await tokenBalanceSetup();
+            setBalance(Number(ethers.utils.formatEther(String(await contract.balanceOf(address)))));
+        }
+        catch(err){
+            console.log(err);
+            setTimeout(getBalance, 1000);
+        }
+      }
 
     useEffect(() => {
-        setIsClient(true)
+        // setIsClient(true);
+        getBalance();
       }, [])
 
     return (<>
@@ -79,6 +116,9 @@ export default function Navbar() {
                 <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
                 {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
+            </div>
+            <div className="bg-red-500 px-4 py-2 rounded-lg border-2 border-black text-white">
+                {balance} $PEARL
             </div>
             <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
                 <WalletConnectButton />
