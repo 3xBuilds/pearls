@@ -233,15 +233,19 @@ const Staking = () => {
             </h1> */}
             <div className=' px-2 rounded-lg max-md:w-[90%] md:w-[60%] mx-auto'><Image className=' rounded-lg ' src={stakingBanner} alt={"staking banner"}  width={1000} height={1000} /></div>
             
-            <div className="flex justify-center items-center mt-10 w-fit mx-auto bg-red-500/50 rounded-xl">
+            <div className=" rounded-t-lg border-2 border-black mt-10 w-32 mx-auto py-1 px-2 border-b-0 flex flex-col bg-pearl-red">
+              <h2 className="text-sm text-white pb-1">You Own:</h2>
+              <h3 className="bg-white rounded text-lg">{2} NFTs</h3>
+            </div>
+            <div className="flex justify-center items-center  w-fit mx-auto bg-red-500/50 rounded-xl border-2 border-black">
               <button onClick={()=>{setUnstakedList(true)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ unstakedList && " bg-pearl-red border-2 border-black " } `}>Not Staked</button>
               <button onClick={()=>{setUnstakedList(false)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ !unstakedList && " bg-pearl-red border-2 border-black " } `}>Staked</button>
             </div>
             
-            <div className="flex justify-center items-center mt-10 bg-white/10 rounded-xl w-fit mx-auto">
+            <div className="flex justify-center items-center mt-6 bg-white/10 rounded-xl w-fit mx-auto">
               {/* <button onClick={fetchNFTs} className="bg-black text-white p-2 rounded-md m-2">Fetch NFTs</button> */}
-              { unstakedList && <button onClick={softStakeAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Stake All</button>}
-              { !unstakedList && <button onClick={claimAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Claim All</button>}
+              { unstakedList && <button onClick={softStakeAll} className="bg-pearl-red border-2 border-black border-x-4 transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-64 hover:brightness-125 text-white p-2 rounded-md m-2">Stake All</button>}
+              { !unstakedList && <button onClick={claimAll} className="bg-pearl-red border-2 border-black border-x-4 transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-64 hover:brightness-125 text-white p-2 rounded-md m-2">Claim All</button>}
             </div>
             <div className="flex justify-center items-center">
               <div className="flex flex-wrap justify-center items-center">
