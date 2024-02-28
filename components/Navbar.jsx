@@ -36,7 +36,7 @@ export default function Navbar() {
     const [openNav, setOpenNav] = useState(false);
 
     const[balance, setBalance] = useState(0);
-    const {address} = useAccount();
+    const {address, isConnected} = useAccount();
 
     // const [isClient, setIsClient] = useState(false)
 
@@ -117,12 +117,12 @@ export default function Navbar() {
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
                 {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
             </div>
-            <div className="bg-red-500 px-4 py-2 rounded-lg border-2 border-black text-white">
-                {balance} $PEARL
-            </div>
+            
             <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
-                <WalletConnectButton />
-                {/* {isClient && isConnected ? <GuacBalance /> : <></>} */}
+              <WalletConnectButton />
+              {isConnected && <div className="bg-pearl-red px-4 py-2.5 rounded-lg border-2 border-black text-white">
+                {balance} $PEARLS
+              </div>}
             </div>
         </div>
     </>

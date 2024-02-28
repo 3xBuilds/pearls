@@ -239,7 +239,7 @@ export default function RaffleFetcher({number}){
                     </div>
                     <h2 className="bg-black/20 col-span-2 text-sm text-white border-2 border-x-4 border-black rounded-xl py-1 leading-none w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
                 </div>
-                <h2 className="text-black bg-gradient-to-br from-red-200 via-white/60 to-red-200 w-fit rounded-t-none rounded-xl py-1 px-4 mx-auto text-[1rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $PEARL</h2>
+                <h2 className="text-black bg-gradient-to-br from-red-200 via-white/60 to-red-200 w-fit rounded-t-none rounded-xl py-1 px-4 mx-auto text-[1rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $PEARLS</h2>
 
                 <button onClick={()=>{
                     setTicketModal(true);

@@ -45,7 +45,7 @@ export default function Raffle() {
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>
         <div className="text-black text-center">
-          <h1 className="text-4xl max-sm:px-10 max-sm:text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 "><Image className="w-10 -mb-2" width={100} height={100} src={guacLogo}></Image></span> $Pearl!</h1>
+          <h1 className="text-4xl max-sm:px-10 max-sm:text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 "><Image className="w-10 -mb-2" width={100} height={100} src={guacLogo}></Image></span> $Pearls!</h1>
 
           <div className="grid gap-5 lg:grid-cols-4 max-lg:grid-cols-2 max-lg:w-[80%] max-md:grid-cols-1 w-[90%] mx-auto mt-10">
             <RaffleFetcher number = {1}/>

@@ -18,6 +18,7 @@ const Staking = () => {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
   const { loader, setLoader } = useGlobalContext();
+  const [unstakedList, setUnstakedList] = useState(true);
   const [displayNFT, setDisplayNFT] = useState([]);
 
   useEffect(() => {
@@ -70,10 +71,10 @@ const Staking = () => {
 
       setLoader(false);
       Swal.fire({
-        title: 'Pearl Claimed!',
-        text: 'Pearl was claimed!',
+        title: 'Pearls Claimed!',
+        text: 'Pearls was claimed!',
         icon: 'success',
-        imageAlt: "Pearl!",
+        imageAlt: "Pearls!",
         confirmButtonText: 'LFG!',
         confirmButtonColor: "#facc14",
         customClass: {
@@ -106,10 +107,10 @@ const Staking = () => {
 
       setLoader(false);
       Swal.fire({
-        title: 'Pearl Claimed!',
-        text: 'Pearl was claimed!',
+        title: 'Pearls Claimed!',
+        text: 'Pearls was claimed!',
         icon: 'success',
-        imageAlt: "Pearl!",
+        imageAlt: "Pearls!",
         confirmButtonText: 'LFG!',
         confirmButtonColor: "#facc14",
         customClass: {
@@ -163,7 +164,7 @@ const Staking = () => {
         title: 'Staked!',
         text: 'NFT was Staked!',
         icon: 'success',
-        imageAlt: "Pearl!",
+        imageAlt: "Pearls!",
         confirmButtonText: 'LFG!',
         confirmButtonColor: "#facc14",
         customClass: {
@@ -231,15 +232,21 @@ const Staking = () => {
                 Staking Page
             </h1> */}
             <div className=' px-2 rounded-lg max-md:w-[90%] md:w-[60%] mx-auto'><Image className=' rounded-lg ' src={stakingBanner} alt={"staking banner"}  width={1000} height={1000} /></div>
+            
+            <div className="flex justify-center items-center mt-10 w-fit mx-auto bg-red-500/50 rounded-xl">
+              <button onClick={()=>{setUnstakedList(true)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ unstakedList && " bg-pearl-red border-2 border-black " } `}>Not Staked</button>
+              <button onClick={()=>{setUnstakedList(false)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ !unstakedList && " bg-pearl-red border-2 border-black " } `}>Staked</button>
+            </div>
+            
             <div className="flex justify-center items-center mt-10 bg-white/10 rounded-xl w-fit mx-auto">
               {/* <button onClick={fetchNFTs} className="bg-black text-white p-2 rounded-md m-2">Fetch NFTs</button> */}
-              <button onClick={claimAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Claim All</button>
-              <button onClick={softStakeAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Stake All</button>
+              { unstakedList && <button onClick={softStakeAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Stake All</button>}
+              { !unstakedList && <button onClick={claimAll} className="bg-pearl-red border-2 border-black transition-all duration-300 ease-in-out hover:-translate-y-2 transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2">Claim All</button>}
             </div>
             <div className="flex justify-center items-center">
               <div className="flex flex-wrap justify-center items-center">
                 {displayNFT.map((item, index)=>{
-                  return (
+                  if(unstakedList ? item.stakeType == "0" :  item.stakeType == "1" ) return (
                     <div key={index} className="m-2 bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black w-64 rounded-xl">
                       <div className="flex flex-col justify-center items-center">
                         <div className=' rounded-lg bg-white w-full overflow-hidden relative group hover:scale-110 hover:border-2 hover:border-white transition-all duration-300 ease-in-out hover:shadow-black hover:shadow-2xl hover:z-50'>

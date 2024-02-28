@@ -39,14 +39,14 @@ export const WalletConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button" className='bg-yellow-400 border-2 border-black text-black rounded-md px-3 py-2.5 shadow-xl transform transition duration-300 ease-in-out shadow-black/30 hover:-translate-y-1 hover:bg-yellow-200'>
+                  <button onClick={openConnectModal} type="button" className='bg-yellow-400 border-2 border-black text-white rounded-md px-3 py-2.5 shadow-xl transform transition duration-300 ease-in-out shadow-black/30 hover:-translate-y-1 hover:bg-yellow-200'>
                     Connect Wallet
                   </button>
                 );
               }
               if (chain.unsupported) {
                 return (
-                  <button onClick={openChainModal} type="button" className='bg-red-500 border-2 border-black text-black rounded-md px-3 py-2.5 shadow-xl transform transition duration-300 ease-in-out shadow-black/30 hover:-translate-y-1 hover:bg-red-300'>
+                  <button onClick={openChainModal} type="button" className='bg-red-500 border-2 border-black text-white rounded-md px-3 py-2.5 shadow-xl transform transition duration-300 ease-in-out shadow-black/30 hover:-translate-y-1 hover:bg-red-300'>
                     Wrong network
                   </button>
                 );
@@ -79,7 +79,7 @@ export const WalletConnectButton = () => {
                     )}
                     {/* {chain.name} */}
                   </button>
-                  <button title='Click to view address' onClick={openAccountModal} type="button" className='text-white bg-pearl-red border-2 border-black text-black rounded-md px-3 py-2.5 shadow-xl transform transition duration-300 ease-in-out shadow-black/20 hover:-translate-y-1 hover:bg-red-400'>
+                  <button title='Click to view address' onClick={openAccountModal} type="button" className=' bg-pearl-red border-2 border-black text-white rounded-md px-3 py-2.5 shadow-xl transform transition duration-300 ease-in-out shadow-black/20 hover:-translate-y-1 hover:bg-red-400'>
                     {/* {account.displayName} */}
                     {account.displayBalance
                       ? ` ${account.displayBalance}`

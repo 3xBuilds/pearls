@@ -40,7 +40,7 @@ export async function pearlMintSetup(address) {
             // imageUrl: error,
             // imageWidth: 200,
             // imageHeight: 200,
-            imageAlt: "Pearl OOPS!",
+            imageAlt: "Pearls OOPS!",
             confirmButtonText: 'Bruh 😭',
             confirmButtonColor: "#facc14", 
             customClass: {
@@ -82,11 +82,11 @@ export default function PearlMint() {
                     console.log(err)
                     Swal.fire({
                         title: 'Error!',
-                        text: 'Couldn\'t Mint Pearl NFTs',
+                        text: 'Couldn\'t Mint Pearls NFTs',
                         // imageUrl: error,
                         // imageWidth: 200,
                         // imageHeight: 200,
-                        imageAlt: "Pearl OOPS!",
+                        imageAlt: "Pearls OOPS!",
                         confirmButtonText: 'Bruh 😭',
                         confirmButtonColor: "#facc14", 
                         customClass: {
@@ -126,7 +126,7 @@ export default function PearlMint() {
             </button> */}
 
             {amountBoxShow &&
-                <div className="bg-yellow-400 z-10 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
+                <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black z-10 rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
                         <h2 onClick={() => { setAmountBoxShow(false) }} className="absolute top-0 right-0 cursor-pointer m-2 mx-4 text-black hover:text-red-600 transform hover:scale-125 transition-all duration-200 ease-in-out">x</h2>
                         {/* <input placeholder="0" type="number" onKeyDown={(e) => { e.preventDefault() }} step={1} min={0} onChange={handleamountChange} value={amount} className="text-black border-2 border-black p-5 py-4 text-center text-3xl block h-fit w-full rounded-xl">

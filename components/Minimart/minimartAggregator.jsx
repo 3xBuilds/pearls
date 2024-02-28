@@ -39,7 +39,7 @@ export default function MinimartAggregator() {
         imageUrl: error,
         imageWidth: 200,
         imageHeight: 200,
-        imageAlt: "Pearl OOPS!",
+        imageAlt: "Pearls OOPS!",
         confirmButtonText: 'Bruh 😭',
         confirmButtonColor: "#facc14",
         customClass: {
@@ -132,7 +132,7 @@ export default function MinimartAggregator() {
         imageUrl: error,
         imageWidth: 200,
         imageHeight: 200,
-        imageAlt: "Pearl OOPS!",
+        imageAlt: "Pearls OOPS!",
         confirmButtonText: 'Bruh 😭',
         confirmButtonColor: "#facc14",
         customClass: {

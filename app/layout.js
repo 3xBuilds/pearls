@@ -8,8 +8,8 @@ const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 
 
 export const metadata = {
-  title: "Pearl NFT",
-  description: "Pearl NFT collection",
+  title: "Pearls NFT",
+  description: "Pearls NFT collection",
 };
 
 export default function RootLayout({ children }) {
