@@ -18,6 +18,7 @@ const Staking = () => {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
   const { loader, setLoader } = useGlobalContext();
+  const [balance, setBalance] = useState(0);
   const [unstakedList, setUnstakedList] = useState(true);
   const [displayNFT, setDisplayNFT] = useState([]);
 
@@ -138,6 +139,8 @@ const Staking = () => {
       const res = await contract?.fetchMyNfts();
       console.log("nfts: ",res);
 
+      setBalance(res.length);
+
       res.map((item)=>{
         const tokenId = Number(item[0]);
         const reward = String(ethers.utils.formatEther(item[1]));
@@ -235,7 +238,7 @@ const Staking = () => {
             
             <div className=" rounded-t-lg border-2 border-black mt-10 w-32 mx-auto py-1 px-2 border-b-0 flex flex-col bg-pearl-red">
               <h2 className="text-sm text-white pb-1">You Own:</h2>
-              <h3 className="bg-white rounded text-lg">{2} NFTs</h3>
+              <h3 className="bg-white rounded text-lg">{balance} NFTs</h3>
             </div>
             <div className="flex justify-center items-center  w-fit mx-auto bg-red-500/50 rounded-xl border-2 border-black">
               <button onClick={()=>{setUnstakedList(true)}} className={` transition-all duration-300 ease-in-out transform w-40 hover:brightness-125 text-white p-2 rounded-md m-2 ${ unstakedList && " bg-pearl-red border-2 border-black " } `}>Not Staked</button>
@@ -261,8 +264,8 @@ const Staking = () => {
                           
                           {
                             Number(item.reward)>0 ?
-                            <h1 className={`text-black  `}>Reward: {Number(item.reward).toFixed(1)}</h1>:
-                            <h1 className={`text-black  `}>Stake to get rewards</h1>
+                            <h1 className={`text-black`}>Reward: {Number(item.reward).toFixed(1)}</h1>:
+                            <h1 className={`text-black`}>Stake to get rewards</h1>
                           }
                           {/* <h1 className="text-black">Stake Type: {item.stakeType}</h1> */}
                         </div>
