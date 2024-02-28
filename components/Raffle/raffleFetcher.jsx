@@ -1,5 +1,6 @@
 import { contractAdds } from "../../utils/contractAdds"
 import raffleabi from "../../utils/newAbis/raffleabi"
+import raffleLinksabi from "@/utils/newAbis/raffleLinksabi"
 import erc721abi from "../../utils/newAbis/erc721abi"
 import erc20abi from "../../utils/newAbis/erc20abi"
 import { useState, useEffect } from "react"
@@ -16,7 +17,7 @@ export default function RaffleFetcher({number}){
     const [image, setImage] = useState("");
     const [ticketsSold, setTicketsSold] = useState(0);
     const [entrants, setEntrants] = useState(0);
-
+    const [link, setLink] = useState("");
     const [itemExists, setItemExists] = useState(false);
     const [limitPerWallet, setLimitPerWallet] = useState(0);
     const [limit, setLimit] = useState(0);
@@ -41,6 +42,29 @@ export default function RaffleFetcher({number}){
         const contract = new ethers.Contract(contractAdds.pearlRaffle, raffleabi, signer);
         // console.log("raffle", raffleAdd);
         return contract;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    async function setLinkContract(){
+        try{
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+    
+            const contract1 = new ethers.Contract(contractAdds.raffleLinks, raffleLinksabi, signer);
+            const add = await contract1?.raffleContract(number);
+            console.log(add);
+            if(add.toUpperCase() == "0X0000000000000000000000000000000000000000"){
+              const contract = new ethers.Contract(contractAdd, erc721abi, signer);
+              return contract
+            }
+    
+            else{
+              const contract = new ethers.Contract(add, erc721abi, signer)
+              return contract;
+            }
         }
         catch(err){
             console.log(err);
@@ -102,15 +126,18 @@ export default function RaffleFetcher({number}){
             const add = await contract?.raffleContract(number);
             const tokenId = Number(await contract?.raffleTokenId(number));
 
+            const contract2 = await setLinkContract();
+
+            
             if(add.toLowerCase() == "0x0000000000000000000000000000000000000000") {
                 console.log("NO CONTRACT");
                 setLoading(false);
                 return;
             }
-
+            
             const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
             const limit = Number(await contract?.ticketLimit(number));
-
+            
             
             if(limit > 0){
                 setPrice(String(await contract?.raffleEntryCost(number)));
@@ -118,8 +145,9 @@ export default function RaffleFetcher({number}){
                 setLimitPerWallet(limitperWallet);
                 setHolding(Number(await contract?.walletHolding(number, address)));
                 setItemExists(true);
+                setLink(await contract2.assignedLinks(number));
                 const contract721 = await setERC721(add);
-    
+                
                 const tokenURI = await contract721.tokenURI(tokenId);
                 console.log(tokenURI);
 
@@ -226,6 +254,7 @@ export default function RaffleFetcher({number}){
             {itemExists ? <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black w-80 rounded-xl">
                 <div className=' rounded-lg bg-white w-full overflow-hidden relative group hover:scale-110 hover:border-2 hover:border-white transition-all duration-300 ease-in-out hover:shadow-black hover:shadow-2xl hover:z-50'>
                     <h1 className="text-black absolute bg-white group-hover:hidden rounded-br-xl px-3 py-0.5 top-0 left-0">{name}</h1>
+                    <a className="text-blue-500 underline" href={link}>Check Collection</a>
                     <Image src={image} alt={name} className=' bg-white w-full h-full object-cover ' width={100} height={100} />
                 </div>
                 <div className="grid grid-cols-2 gap-2 mt-2">
