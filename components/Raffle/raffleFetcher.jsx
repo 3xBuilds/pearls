@@ -288,7 +288,7 @@ export default function RaffleFetcher({number}){
                     <h3 className="text-white text-center">No Item Here</h3>
                 </div>}
 
-                {ticketModal && <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
+                {ticketModal && <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 z-20 border-2 border-black rounded-2xl w-[300px] px-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
                         <h2 onClick={() => { setTicketModal(false) }} className="absolute top-0 right-0 cursor-pointer m-2 mx-4 text-black hover:text-red-600 transform hover:scale-125 transition-all duration-200 ease-in-out">x</h2>
                         {/* <input placeholder="0" type="number" onKeyDown={(e) => { e.preventDefault() }} step={1} min={0} onChange={handleamountChange} value={amount} className="text-black border-2 border-black p-5 py-4 text-center text-3xl block h-fit w-full rounded-xl">
@@ -297,7 +297,7 @@ export default function RaffleFetcher({number}){
                             <button onClick={()=>{changeAmount(-1)}} className="p-3">
                                 <Image width={1920} height={1080} src={arrowright} className="w-[3rem] rotate-180"/>
                             </button>
-                            <div className="text-[2.5rem] text-center text-black">{amount}</div>
+                            <div className="text-[2.5rem] text-center text-white">{amount}</div>
                             <button onClick={()=>{changeAmount(1)}} className="p-3">
                                 <Image width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
                             </button>
