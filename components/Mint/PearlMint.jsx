@@ -2,7 +2,7 @@
 
 import { ethers } from "ethers"
 import Image from 'next/image'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import { contractAdds } from "../../utils/contractAdds"
 import abi from "../../utils/newAbis/mintabi"
@@ -19,7 +19,7 @@ const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 import { useAccount } from 'wagmi'
 
-export async function pearlMintSetup(address) {
+export async function pearlMintSetup() {
 
     const add = contractAdds.pearlNFT;
 
@@ -56,6 +56,8 @@ export async function pearlMintSetup(address) {
 
 export default function PearlMint() {
 
+    const[supply, setSupply] = useState(0);
+
     const [amount, setAmount] = useState(1);
     const [amountBoxShow, setAmountBoxShow] = useState(false);
     const { isConnected, address } = useAccount()
@@ -63,10 +65,22 @@ export default function PearlMint() {
     const { setLoader } = useGlobalContext();
 
 
+    async function fetchSupply(){
+        try{
+            const contract = await pearlMintSetup();
+
+            setSupply(Number(await contract.totalSupply()));
+        }
+        catch(err){
+            setTimeout(fetchSupply, 1000);
+            console.log(err);
+        }
+    }
+
     async function mint() {
         setLoader(true)
         if (isConnected) {
-          const contract = await pearlMintSetup(address);
+          const contract = await pearlMintSetup();
 
           await contract.mint(amount, {value: ethers.utils.parseEther(String(15 * amount)) }).then(
             (res) => {
@@ -112,11 +126,16 @@ export default function PearlMint() {
         setAmount(1);
     }
 
+    useEffect(()=>{
+        fetchSupply()
+    },[])
+
     return (
         <>
             {/* <div className=" absolute top-1/2 left-1/2 flex items-center justify-center h-full">
                 <button onClick={()=>{setAmountBoxShow(true)}} className="bg-red-400">Click me pls</button>
             </div> */}
+
 
             <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" absolute cursor-pointer w-full h-full"></button>
 
@@ -124,6 +143,7 @@ export default function PearlMint() {
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
             </button> */}
+            <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 text-center translate-y-44 px-4 py-2 text-xl rounded-xl border-2 border-red-400 w-fit flex mx-auto">Minted: {supply}/4321</div>
 
             {amountBoxShow &&
                 <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black z-10 rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
