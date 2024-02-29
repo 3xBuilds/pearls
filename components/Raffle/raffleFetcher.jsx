@@ -56,7 +56,7 @@ export default function RaffleFetcher({number}){
   
         try {
         const contract = new ethers.Contract(contractAdds.raffleLinks, raffleLinksabi, signer);
-        console.log("raffle", raffleAdd);
+
         return contract;
         }
         catch(err){
@@ -138,6 +138,7 @@ export default function RaffleFetcher({number}){
                 setLimitPerWallet(limitperWallet);
                 setHolding(Number(await contract?.walletHolding(number, address)));
                 setItemExists(true);
+                // console.log(await contract2.assignedLinks(number))
                 setLink(await contract2.assignedLinks(number));
                 const contract721 = await setERC721(add);
                 
@@ -189,7 +190,7 @@ export default function RaffleFetcher({number}){
 
         catch(err){
             console.log(err);
-            setTimeout( fetchRaffle(), 1000);
+            setTimeout( fetchRaffle, 1000);
         }
     }
 
@@ -247,7 +248,6 @@ export default function RaffleFetcher({number}){
             {itemExists ? <div className="bg-gradient-to-br from-red-800 via-pearl-red to-red-900 border-2 p-2 border-black w-80 rounded-xl">
                 <div className=' rounded-lg bg-white w-full overflow-hidden relative group hover:scale-110 hover:border-2 hover:border-white transition-all duration-300 ease-in-out hover:shadow-black hover:shadow-2xl hover:z-50'>
                     <h1 className="text-black absolute bg-white group-hover:hidden rounded-br-xl px-3 py-0.5 top-0 left-0">{name}</h1>
-                    <a className="text-blue-500 underline" href={link}>Check Collection</a>
                     <Image src={image} alt={name} className=' bg-white w-full h-full object-cover ' width={100} height={100} />
                 </div>
                 <div className="grid grid-cols-2 gap-2 mt-2">
@@ -263,6 +263,7 @@ export default function RaffleFetcher({number}){
                 </div>
                 <h2 className="text-black bg-gradient-to-br from-red-200 via-white/60 to-red-200 w-fit rounded-t-none rounded-xl py-1 px-4 mx-auto text-[1rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $PEARLS</h2>
 
+                    <a className="text-white my-10 underline" href={link}>Inspect Collection</a>
                 <button onClick={()=>{
                     setTicketModal(true);
                 }} className="bg-black/50 hover:bg-black/80 cursor-pointer w-full text-white p-4 rounded-lg mt-2">Buy Tickets</button>

@@ -120,7 +120,7 @@ export default function Navbar() {
             
             <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
               <WalletConnectButton />
-              {isConnected && <div className="bg-pearl-red px-4 py-2.5 rounded-lg border-2 border-black text-white">
+              {isConnected && <div className="bg-gradient-to-br from-red-900 to-red-600 px-4 py-2.5 rounded-lg border-2 border-black text-white">
                 {balance} $PEARLS
               </div>}
             </div>
