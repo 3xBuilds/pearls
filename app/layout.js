@@ -14,6 +14,9 @@ export const metadata = {
   og: {
     image: image,
   },
+  twitter: {
+    image: image, // Replace with your image URL
+  },
 };
 
 export default function RootLayout({ children }) {
