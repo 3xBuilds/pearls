@@ -11,17 +11,13 @@ const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 export const metadata = {
   title: "Pearls NFT",
   description: "Pearls NFT collection",
-  og: {
-    image: image,
-  },
-  twitter: {
-    image: image, // Replace with your image URL
-  },
+
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head></head>
       <body className={font.className + ""}>
         <Providers>
           <ToastContainer />
