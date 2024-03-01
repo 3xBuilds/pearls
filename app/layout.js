@@ -4,7 +4,7 @@ import candybeans from "next/font/local"
 import Providers from "@/utils/Providers";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../assets/images/taco-truck-dat-inside.png"
+import image from "../assets/images/taco-truck-day-inside.png"
 const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 
 
