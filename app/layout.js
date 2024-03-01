@@ -4,7 +4,7 @@ import candybeans from "next/font/local"
 import Providers from "@/utils/Providers";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../assets/images/taco-truck-day-inside.png"
+import image from "./opengraph-image.png"
 const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 
 
@@ -12,20 +12,35 @@ export const metadata = {
   title: "Pearls NFT",
   description: "Pearls NFT collection",
 
-  og: {
-    url: 'https://oysterbar.tacotribe.shop',
+  openGraph: {
+    title: 'Taco Tribe Dapp',
+    description: 'Taco taco moreee tacooo',
+    url: 'https://tacotribe.vercel.app',
+    siteName: 'Taco Tribe Shop',
+    images: [
+      {
+        url: image,
+        width: 800,
+        height: 600,
+      },
+      {
+        url: image,
+        width: 1800,
+        height: 1600,
+        alt: 'Taco Tribe Shop',
+      },
+    ],
+    locale: 'en_US',
     type: 'website',
-    title: 'Pearls NFT',
-    description: 'Pearls NFT collection',
-    image: 'https://opengraph.b-cdn.net/production/documents/a498cf9b-b83c-4f78-8368-80e0c1bc99d5.png?token=wkFq5kPFTJ-VRDyLvF7OVkb4zQKsamCWXrfFHX_DexA&height=636&width=1200&expires=33245315563',
   },
   twitter: {
     card: 'summary_large_image',
-    domain: 'oysterbar.tacotribe.shop',
-    url: 'https://oysterbar.tacotribe.shop',
-    title: 'Pearls NFT',
-    description: 'Pearls NFT collection',
-    image: 'https://opengraph.b-cdn.net/production/documents/a498cf9b-b83c-4f78-8368-80e0c1bc99d5.png?token=wkFq5kPFTJ-VRDyLvF7OVkb4zQKsamCWXrfFHX_DexA&height=636&width=1200&expires=33245315563',
+    title: 'Taco Tribe Dapp',
+    description: 'aco taco moreee tacooo',
+    siteId: '1467726470533754880',
+    creator: '@3xbuilds',
+    creatorId: '1467726470533754880',
+    images: [image],
   },
 
 };
