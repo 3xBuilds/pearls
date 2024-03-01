@@ -13,10 +13,10 @@ export const metadata = {
   description: "Pearls NFT collection",
 
   openGraph: {
-    title: 'Taco Tribe Dapp',
-    description: 'Taco taco moreee tacooo',
-    url: 'https://tacotribe.vercel.app',
-    siteName: 'Taco Tribe Shop',
+    title: 'Pearls NFT',
+    description: 'Pearls NFT collection',
+    url: 'https://oysterbar.tacotribe.shop',
+    siteName: 'Pearls NFTs',
     images: [
       {
         url: image,
@@ -27,7 +27,7 @@ export const metadata = {
         url: image,
         width: 1800,
         height: 1600,
-        alt: 'Taco Tribe Shop',
+        alt: 'Pearls NFTs',
       },
     ],
     locale: 'en_US',
@@ -35,8 +35,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Taco Tribe Dapp',
-    description: 'aco taco moreee tacooo',
+    title: 'Pearls NFT',
+    description: 'Pearls NFT collection',
     siteId: '1467726470533754880',
     creator: '@3xbuilds',
     creatorId: '1467726470533754880',
