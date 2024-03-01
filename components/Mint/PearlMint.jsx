@@ -82,7 +82,7 @@ export default function PearlMint() {
         if (isConnected) {
           const contract = await pearlMintSetup();
 
-          await contract.mint(amount, {value: ethers.utils.parseEther(String(15 * amount)) }).then(
+          await contract.mint(amount, {value: ethers.utils.parseEther(String(5 * amount)) }).then(
             (res) => {
                 console.log(res);
                 Swal.fire({
