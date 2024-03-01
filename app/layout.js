@@ -4,12 +4,16 @@ import candybeans from "next/font/local"
 import Providers from "@/utils/Providers";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import image from "../assets/images/taco-truck-dat-inside.png"
 const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 
 
 export const metadata = {
   title: "Pearls NFT",
   description: "Pearls NFT collection",
+  og: {
+    image: image,
+  },
 };
 
 export default function RootLayout({ children }) {
