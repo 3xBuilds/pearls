@@ -190,13 +190,16 @@ const Staking = () => {
       const contract = await stakingSetup();
       const tokenIds = []
       console.log(displayNFT);
-      displayNFT.map((item) => {
 
-      if(item.stakeType == 0){
-        const tokenId = item.tokenId;
-        tokenIds.push(tokenId);
-      }
+
+      displayNFT.map((item) => {
+        if(item.stakeType == 0){
+          const tokenId = item.tokenId;
+          tokenIds.push(tokenId);
+        }
       })
+
+
       const res = await contract?.softStakeAll(tokenIds);
       await res.wait();
       Swal.fire({
