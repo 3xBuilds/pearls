@@ -45,7 +45,7 @@ export default function Navbar() {
     async function tokenBalanceSetup() {
 
         const provider = new ethers.getDefaultProvider("https://polygon-mainnet.infura.io/v3/572a699984034c5bb63ebdc9dafa15d1");
-        const signer = provider.getSigner();
+        // const signer = provider.getSigner();
     
         try {
           const contract = new ethers.Contract(contractAdds.pearlToken, pearlTokenabi, provider);
