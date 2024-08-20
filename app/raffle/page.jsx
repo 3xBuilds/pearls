@@ -4,7 +4,7 @@ import Raffle from "@/components/Raffle"
 
 const page = () => {
   return (
-    <main className="">
+    <main className="bg-[#ffd7dc]">
       <Navbar/>
       <Raffle/>
     </main>
