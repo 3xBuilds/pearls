@@ -38,10 +38,11 @@ export default function Raffle() {
   }, [isConnected])
 
   async function raffleContract(){
-    const provider = new ethers.getDefaultProvider("https://polygon-mainnet.infura.io/v3/572a699984034c5bb63ebdc9dafa15d1");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
 
     try {
-    const contract = new ethers.Contract(contractAdds.raffle, raffleabi, provider);
+    const contract = new ethers.Contract(contractAdds.raffle, raffleabi, signer);
     // console.log("raffle", raffleAdd);
     return contract;
     }
