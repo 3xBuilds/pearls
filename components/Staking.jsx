@@ -146,7 +146,7 @@ const Staking = () => {
         const stakeType = Number(item[2]);
 
         const name = `Pearls #${tokenId}`;
-        const img = `https://ipfs.io/ipfs/bafybeignt7z7tp26gvj7fscens4fkzmqtmzbhdcx4kln2aj3l65jmwxdi4/${tokenId}.png`;
+        const img = `https://gateway.lighthouse.storage/ipfs//bafybeignt7z7tp26gvj7fscens4fkzmqtmzbhdcx4kln2aj3l65jmwxdi4/${tokenId}.png`;
         
         setDisplayNFT((prev)=>[...prev, {tokenId, reward, stakeType, name, img}])
       })
