@@ -29,6 +29,10 @@ import { useEffect, useState } from 'react'
 import NavButton from './UI/Buttons/navButton'
 import { WalletConnectButton } from "./UI/Buttons/walletConnectButton"
 
+import buildDown from "@/assets/images/build_down.png"
+import buildUp from "@/assets/images/build_up.png"
+
+
 export default function Navbar() {
 
     const params = usePathname();
@@ -98,6 +102,7 @@ export default function Navbar() {
             <NavButton upImage={mintBtnUp} downImage={mintBtnDown} selected={params == "/" ? true : false} link={"/"} />
             <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
             <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
+            <a href='https://build-a-pearl.tacotribe.shop/' target='_blank' className='group w-12'><Image src={buildUp} alt='teleUp' className='group-hover:hidden' /><Image src={buildDown} alt='teleDown' className='hidden group-hover:flex' /></a>
             {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
         </div>}
 
@@ -115,8 +120,8 @@ export default function Navbar() {
                 <NavButton upImage={mintBtnUp} downImage={mintBtnDown} selected={params == "/" ? true : false} link={"/"} />
                 <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params == "/stake" ? true : false} link={"/stake"} />
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
-                {/* <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} /> */}
-            </div>
+                <a href='https://build-a-pearl.tacotribe.shop/' target='_blank' className='group w-12 -translate-y-1'><Image src={buildUp} alt='teleUp' className='group-hover:hidden' /><Image src={buildDown} alt='teleDown' className='hidden group-hover:flex' /></a>
+                </div>
             
             <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
               <WalletConnectButton />
